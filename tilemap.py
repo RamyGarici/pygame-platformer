@@ -1,3 +1,5 @@
+import pygame
+
 NEIGHBOR_OFFSET= [(-1, 0), (-1, -1), (-1,1), (-1, 0), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
 PHYSICS_TILES= {'grass', 'stone'}
 
@@ -34,7 +36,12 @@ class Tilemap:
     def physics_rects_arount(self, pos):
         rects=[]
         for tile in self.tiles.around(pos):
-            if tile['type']
+            if tile['type'] in PHYSICS_TILES:
+                rects.append(pygame.Rect(
+                    tile['pos'][0] * self.tile_size,
+                    tile['pos'][1] * self.tile_size,
+                    self.tile_size, self.tile_size))
+        return rects
                 
         
 
